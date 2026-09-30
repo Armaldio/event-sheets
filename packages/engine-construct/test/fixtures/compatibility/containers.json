@@ -1,0 +1,42 @@
+{
+  "id": "container-object-creation",
+  "featureId": "containers",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/objects/containers"
+    ],
+    "claim": "Container-linked instances are created and picked together for subsequent events."
+  },
+  "input": {
+    "sid": "compat-containers",
+    "events": [
+      {
+        "eventType": "block",
+        "sid": "create-container-object-event",
+        "conditions": [],
+        "actions": [
+          { "id": "create-object", "objectClass": "System", "sid": "create-container-player", "parameters": { "object-to-create": "Player", "layer": "Game", "x": 10, "y": 20 } }
+        ],
+        "children": [
+          {
+            "eventType": "block",
+            "sid": "record-container-inventory-event",
+            "conditions": [],
+            "actions": [
+              { "id": "record", "objectClass": "Inventory", "sid": "record-created-inventory", "parameters": { "action": "record-inventory" } }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Create Player asks the host for its linked container members and picks the new Inventory member for the child event.",
+  "expectedSelections": [
+    { "action": "record-inventory", "instanceIds": ["inventory-created"] }
+  ],
+  "expectedActions": ["create-container-player", "record-created-inventory"],
+  "expectedOutput": { "runtimeStatus": "complete" }
+}

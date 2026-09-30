@@ -1,0 +1,22 @@
+{
+  "id": "repeat-count-loop",
+  "featureId": "repeat-loop",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-expressions"
+    ],
+    "claim": "Repeat runs the event body the specified number of times and LoopIndex reports the current iteration."
+  },
+  "input": {
+    "sid": "compat-repeat",
+    "events": [{ "eventType": "block", "sid": "repeat-event", "conditions": [{ "id": "repeat", "objectClass": "System", "sid": "repeat-condition", "parameters": { "count": 3 } }], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "repeat-action", "parameters": { "variable": "lastIndex", "value": "LoopIndex" } }] }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "The event action executes three times with loop indices 0, 1, and 2.",
+  "expectedSelections": [],
+  "expectedActions": ["repeat-action", "repeat-action", "repeat-action"],
+  "expectedOutput": { "variables": { "lastIndex": 2 } }
+}

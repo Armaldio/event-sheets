@@ -1,0 +1,43 @@
+{
+  "id": "stop-loop-action",
+  "featureId": "stop-loop-action",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-actions"
+    ],
+    "claim": "Stop loop ends active loop iterations after the current event's remaining actions and sub-events run."
+  },
+  "input": {
+    "sid": "compat-stop-loop",
+    "events": [
+      {
+        "eventType": "block",
+        "sid": "stop-loop-event",
+        "conditions": [
+          { "id": "repeat", "objectClass": "System", "sid": "stop-loop-repeat", "parameters": { "count": 4 } }
+        ],
+        "actions": [
+          { "id": "stop-loop", "objectClass": "System", "sid": "stop-current-loop", "parameters": {} },
+          { "id": "set-eventvar-value", "objectClass": "System", "sid": "remember-loop-index", "parameters": { "variable": "lastIndex", "value": "LoopIndex" } }
+        ],
+        "children": [
+          {
+            "eventType": "block",
+            "sid": "stop-loop-child",
+            "conditions": [],
+            "actions": [
+              { "id": "set-eventvar-value", "objectClass": "System", "sid": "remember-child-index", "parameters": { "variable": "childIndex", "value": "LoopIndex" } }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Stop loop runs once, then the remaining action and child event run at LoopIndex zero before Repeat stops.",
+  "expectedSelections": [],
+  "expectedActions": ["stop-current-loop", "remember-loop-index", "remember-child-index"],
+  "expectedOutput": { "loopCount": 1, "variables": { "lastIndex": 0, "childIndex": 0 }, "runtimeStatus": "complete" }
+}

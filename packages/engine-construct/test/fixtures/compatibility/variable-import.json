@@ -1,0 +1,21 @@
+{
+  "id": "construct-variable-import",
+  "featureId": "construct-variable-import",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/variables"
+    ],
+    "claim": "Root-level Construct event-sheet variable declarations are global and are represented as global schema variables attached to their source sheet."
+  },
+  "input": {
+    "sid": "compat-variable-import",
+    "events": [{ "eventType": "variable", "sid": "score", "name": "score", "type": "number", "initialValue": "2", "comment": "score", "isStatic": false, "isConstant": false }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "A root-level Construct variable becomes a global schema variable, initializes the Construct runtime, and survives an export round trip.",
+  "expectedSelections": [],
+  "expectedActions": [],
+  "expectedOutput": { "importedVariableCount": 1, "initialValue": 2 }
+}

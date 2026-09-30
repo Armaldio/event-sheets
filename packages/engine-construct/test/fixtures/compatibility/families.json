@@ -1,0 +1,39 @@
+{
+  "id": "family-object-types",
+  "featureId": "families",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/objects/families"
+    ],
+    "claim": "A family acts as a shared object type for picking and actions across its member object types."
+  },
+  "input": {
+    "sid": "compat-families",
+    "events": [
+      {
+        "eventType": "block",
+        "sid": "family-pick-event",
+        "conditions": [
+          { "id": "pick-all", "objectClass": "System", "sid": "pick-all-enemies", "parameters": { "object": "Enemies" } }
+        ],
+        "actions": [
+          { "id": "record", "objectClass": "Enemies", "sid": "record-enemy", "parameters": { "action": "record-enemy" } }
+        ]
+      }
+    ]
+  },
+  "hostInstances": [
+    { "type": "Goblin", "properties": { "id": "goblin-1" } },
+    { "type": "Orc", "properties": { "id": "orc-1" } },
+    { "type": "Villager", "properties": { "id": "villager-1" } }
+  ],
+  "expectedBehavior": "The host adapter resolves the Enemies family query to its Goblin and Orc members; the family action runs once for each selected member.",
+  "expectedSelections": [
+    { "action": "record-enemy", "instanceIds": ["goblin-1"] },
+    { "action": "record-enemy", "instanceIds": ["orc-1"] }
+  ],
+  "expectedActions": ["record-enemy"],
+  "expectedOutput": { "runtimeStatus": "complete" }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "nested-repeat-stop-loop",
+  "featureId": "multiple-loop-conditions",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-actions"
+    ],
+    "claim": "Stop loop exits active loops after the current event body and its child events finish."
+  },
+  "input": {
+    "sid": "compat-multiple-loops-stop",
+    "events": [{
+      "eventType": "block",
+      "sid": "multiple-loop-stop-event",
+      "conditions": [
+        { "id": "repeat", "objectClass": "System", "sid": "outer-repeat", "parameters": { "count": 3 } },
+        { "id": "repeat", "objectClass": "System", "sid": "inner-repeat", "parameters": { "count": 3 } }
+      ],
+      "actions": [
+        { "id": "stop-loop", "objectClass": "System", "sid": "stop-all-loops", "parameters": {} },
+        { "id": "set-eventvar-value", "objectClass": "System", "sid": "remember-inner-index", "parameters": { "variable": "lastIndex", "value": "LoopIndex" } }
+      ],
+      "children": [{
+        "eventType": "block",
+        "sid": "nested-stop-child",
+        "conditions": [],
+        "actions": [
+          { "id": "set-eventvar-value", "objectClass": "System", "sid": "remember-child-index", "parameters": { "variable": "childIndex", "value": "LoopIndex" } }
+        ]
+      }]
+    }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Stop loop in the innermost iteration finishes remaining actions and child events, then exits both nested Repeat loops.",
+  "expectedSelections": [],
+  "expectedActions": ["stop-all-loops", "remember-inner-index", "remember-child-index"],
+  "expectedOutput": { "eventStatuses": ["passed", "passed"], "loopCount": 1, "variables": { "lastIndex": 0, "childIndex": 0 }, "runtimeStatus": "complete" }
+}

@@ -1,0 +1,27 @@
+:root {
+  --event-sheet-canvas: #e9eeea;
+  --event-sheet-paper: #f7f8f5;
+  --event-sheet-ink: #1a2528;
+  --event-sheet-muted: #647276;
+  --event-sheet-rule: #c4ceca;
+  --event-sheet-condition: #286a68;
+  --event-sheet-action: #a14934;
+  --event-sheet-warning: #8b651d;
+  --event-sheet-invalid: #a03b38;
+  --event-sheet-code: #dfe7e2;
+  --event-sheet-display: "Avenir Next", "Segoe UI", sans-serif;
+  --event-sheet-body: system-ui, "Segoe UI", sans-serif;
+  --event-sheet-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+.event-sheet-editor,
+.event-sheet-editor * {
+  box-sizing: border-box;
+}
+
+.event-sheet-editor {
+  color: var(--event-sheet-ink);
+  font-family: var(--event-sheet-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}

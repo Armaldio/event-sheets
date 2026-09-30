@@ -1,0 +1,34 @@
+{
+  "sid": "sheet-1",
+  "name": "Main",
+  "events": [
+    {
+      "eventType": "block",
+      "sid": "event-1",
+      "conditions": [
+        {
+          "id": "compare-two-values",
+          "objectClass": "System",
+          "sid": "condition-1",
+          "parameters": {
+            "first-value": "Player.X",
+            "comparison": 0,
+            "second-value": 10
+          }
+        }
+      ],
+      "actions": [
+        {
+          "id": "set-eventvar-value",
+          "objectClass": "System",
+          "sid": "action-1",
+          "parameters": {
+            "variable": "score",
+            "value": "score + 1"
+          }
+        }
+      ],
+      "children": []
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "named-for-loop",
+  "featureId": "for-loop",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-expressions"
+    ],
+    "claim": "For repeats across an inclusive index range, and LoopIndex can read the active named loop index."
+  },
+  "input": {
+    "sid": "compat-for-loop",
+    "events": [{
+      "eventType": "block",
+      "sid": "for-event",
+      "conditions": [
+        { "id": "for", "objectClass": "System", "sid": "outer-for", "parameters": { "name": "outer", "start-index": "1", "end-index": "2" } },
+        { "id": "for", "objectClass": "System", "sid": "inner-for", "parameters": { "name": "\"inner\"", "start-index": "4", "end-index": "5" } }
+      ],
+      "actions": [
+        { "id": "set-eventvar-value", "objectClass": "System", "sid": "record-outer", "parameters": { "variable": "outerIndex", "value": "LoopIndex(\"outer\")" } },
+        { "id": "set-eventvar-value", "objectClass": "System", "sid": "record-inner", "parameters": { "variable": "innerIndex", "value": "LoopIndex(\"inner\")" } },
+        { "id": "set-eventvar-value", "objectClass": "System", "sid": "record-current", "parameters": { "variable": "currentIndex", "value": "LoopIndex" } }
+      ]
+    }]
+  },
+  "hostInstances": [],
+  "expectedSelections": [],
+  "expectedBehavior": "The outer loop visits 1 and 2. For each outer index, the inner loop visits 4 and 5; named LoopIndex calls return their corresponding active index.",
+  "expectedActions": [
+    "record-outer", "record-inner", "record-current",
+    "record-outer", "record-inner", "record-current",
+    "record-outer", "record-inner", "record-current",
+    "record-outer", "record-inner", "record-current"
+  ],
+  "expectedOutput": { "variables": { "outerIndex": 2, "innerIndex": 5, "currentIndex": 5 }, "loopCount": 4, "runtimeStatus": "complete" }
+}

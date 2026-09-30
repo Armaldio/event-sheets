@@ -1,0 +1,40 @@
+{
+  "id": "for-each-picked-instances",
+  "featureId": "for-each-loop",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-expressions"
+    ],
+    "claim": "For Each repeats once per currently picked instance; LoopIndex reports the current loop index."
+  },
+  "input": {
+    "sid": "compat-for-each",
+    "events": [{
+      "eventType": "block",
+      "sid": "for-each-event",
+      "conditions": [
+        { "id": "pick-by-comparison", "objectClass": "System", "sid": "prior-pick", "parameters": { "object": "Player", "first-value": "Player.X", "comparison": 4, "second-value": 0 } },
+        { "id": "for-each", "objectClass": "System", "sid": "for-each-condition", "parameters": { "object": "Player" } }
+      ],
+      "actions": [
+        { "id": "record", "objectClass": "Player", "sid": "record-each", "parameters": { "action": "record-each" } },
+        { "id": "set-eventvar-value", "objectClass": "System", "sid": "each-x", "parameters": { "variable": "lastX", "value": "Player.X" } },
+        { "id": "set-eventvar-value", "objectClass": "System", "sid": "each-index", "parameters": { "variable": "lastIndex", "value": "LoopIndex" } }
+      ]
+    }]
+  },
+  "hostInstances": [
+    { "type": "Player", "properties": { "id": "player-5", "X": 5 } },
+    { "type": "Player", "properties": { "id": "player-15", "X": 15 } }
+  ],
+  "expectedBehavior": "The prior pick includes both players; For Each executes the body once for each selected player in order.",
+  "expectedSelections": [
+    { "action": "record-each", "instanceIds": ["player-5"] },
+    { "action": "record-each", "instanceIds": ["player-15"] }
+  ],
+  "expectedActions": ["record-each", "each-x", "each-index", "record-each", "each-x", "each-index"],
+  "expectedOutput": { "variables": { "lastX": 15, "lastIndex": 1 } }
+}

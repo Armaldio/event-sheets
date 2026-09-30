@@ -1,0 +1,30 @@
+{
+  "name": "@project/engine-construct",
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false",
+    "lint": "eslint src test",
+    "test": "pnpm build && vitest run"
+  },
+  "dependencies": {
+    "@project/schema": "workspace:*",
+    "fflate": "^0.8.3"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2",
+    "vitest": "^4.1.1"
+  }
+}

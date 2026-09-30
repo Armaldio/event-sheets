@@ -1,0 +1,28 @@
+{
+  "id": "system-comparison-options",
+  "featureId": "system-comparisons",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions"
+    ],
+    "claim": "Compare two values lists Equal, Not equal, Less, Less or equal, Greater, Greater or equal in this order."
+  },
+  "input": {
+    "sid": "compat-comparisons",
+    "events": [
+      { "eventType": "block", "sid": "eq", "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "eq-condition", "parameters": { "first-value": 2, "comparison": 0, "second-value": 2 } }], "actions": [] },
+      { "eventType": "block", "sid": "ne", "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "ne-condition", "parameters": { "first-value": 2, "comparison": 1, "second-value": 2 } }], "actions": [] },
+      { "eventType": "block", "sid": "lt", "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "lt-condition", "parameters": { "first-value": 1, "comparison": 2, "second-value": 2 } }], "actions": [] },
+      { "eventType": "block", "sid": "le", "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "le-condition", "parameters": { "first-value": 2, "comparison": 3, "second-value": 2 } }], "actions": [] },
+      { "eventType": "block", "sid": "gt", "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "gt-condition", "parameters": { "first-value": 2, "comparison": 4, "second-value": 1 } }], "actions": [] },
+      { "eventType": "block", "sid": "ge", "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "ge-condition", "parameters": { "first-value": 2, "comparison": 5, "second-value": 2 } }], "actions": [] }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Each event condition follows the documented comparison option and operand rule.",
+  "expectedSelections": [],
+  "expectedActions": [],
+  "expectedOutput": { "conditionResults": [true, false, true, true, true, true] }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "object-picking-selection-inheritance",
+  "featureId": "object-picking-and-selection",
+  "coveredFeatureIds": ["sol-restoration"],
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/how-events-work"
+    ],
+      "claim": "Pick by comparison filters matching instances; child events inherit picked instances, restore their parent's selection when they finish, and root sibling events start with all instances picked."
+  },
+  "input": {
+    "sid": "compat-selection",
+    "events": [
+      {
+        "eventType": "block",
+        "sid": "pick-event",
+        "conditions": [{ "id": "pick-by-comparison", "objectClass": "System", "sid": "pick-condition", "parameters": { "object": "Player", "first-value": "Player.X", "comparison": 4, "second-value": 10 } }],
+        "actions": [],
+        "children": [
+          { "eventType": "block", "sid": "child-event", "conditions": [], "actions": [{ "id": "record", "objectClass": "Player", "sid": "record-selected", "parameters": { "action": "record-selected" } }] },
+          { "eventType": "block", "sid": "child-pick-event", "conditions": [{ "id": "pick-by-comparison", "objectClass": "System", "sid": "child-pick-condition", "parameters": { "object": "Player", "first-value": "Player.X", "comparison": 2, "second-value": 10 } }], "actions": [{ "id": "record", "objectClass": "Player", "sid": "record-child-pick", "parameters": { "action": "record-child-pick" } }] },
+          { "eventType": "block", "sid": "parent-sol-after-child", "conditions": [], "actions": [{ "id": "record", "objectClass": "Player", "sid": "record-parent-selection", "parameters": { "action": "record-parent-selection" } }] },
+          { "eventType": "block", "sid": "pick-all-event", "conditions": [{ "id": "pick-all", "objectClass": "System", "sid": "pick-all-condition", "parameters": { "object": "Player" } }], "actions": [{ "id": "record", "objectClass": "Player", "sid": "record-all", "parameters": { "action": "record-all" } }, { "id": "set-eventvar-value", "objectClass": "System", "sid": "set-first-x", "parameters": { "variable": "allFirstX", "value": "Player.X" } }] }
+        ]
+      },
+      { "eventType": "block", "sid": "sibling-event", "conditions": [], "actions": [{ "id": "record", "objectClass": "Player", "sid": "sibling-record", "parameters": { "action": "sibling-record" } }] }
+    ]
+  },
+  "hostInstances": [
+    { "type": "Player", "properties": { "id": "player-5", "X": 5 } },
+    { "type": "Player", "properties": { "id": "player-15", "X": 15 } }
+  ],
+  "expectedBehavior": "The pick is narrowed to player-15, inherited by its child, replaced with all players by Pick all, then reset to all players for the root sibling.",
+  "expectedSelections": [
+    { "action": "record-selected", "instanceIds": ["player-15"] },
+    { "action": "record-parent-selection", "instanceIds": ["player-15"] },
+    { "action": "record-all", "instanceIds": ["player-5"] },
+    { "action": "record-all", "instanceIds": ["player-15"] },
+    { "action": "sibling-record", "instanceIds": ["player-5"] },
+    { "action": "sibling-record", "instanceIds": ["player-15"] }
+  ],
+  "expectedActions": ["record-selected", "record-parent-selection", "record-all", "set-first-x", "sibling-record"],
+  "expectedOutput": { "variables": { "allFirstX": 5 } }
+}

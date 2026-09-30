@@ -1,0 +1,49 @@
+{
+  "id": "nested-local-variable-import",
+  "featureId": "nested-local-variable-import",
+  "status": "TESTED",
+  "input": {
+    "sid": "nested-local-variable-sheet",
+    "name": "Nested local variable",
+    "events": [{
+      "eventType": "group",
+      "sid": "local-variable-group",
+      "disabled": false,
+      "title": "Locals",
+      "isActiveOnStart": true,
+      "children": [{
+        "eventType": "variable",
+        "sid": "local-counter",
+        "name": "counter",
+        "type": "number",
+        "initialValue": "0",
+        "isStatic": false,
+        "isConstant": false
+      }, {
+        "eventType": "variable",
+        "sid": "static-local-counter",
+        "name": "staticCounter",
+        "type": "number",
+        "initialValue": "0",
+        "isStatic": true,
+        "isConstant": false
+      }, {
+        "eventType": "block",
+        "sid": "read-local-counter",
+        "conditions": [],
+        "actions": [
+          { "id": "add-to-eventvar", "objectClass": "System", "sid": "increment-local-counter", "parameters": { "variable": "counter", "value": 1 } },
+          { "id": "add-to-eventvar", "objectClass": "System", "sid": "increment-static-counter", "parameters": { "variable": "staticCounter", "value": 1 } },
+          { "id": "set-eventvar-value", "objectClass": "System", "sid": "copy-local-counter", "parameters": { "variable": "observedCounter", "value": "counter" } },
+          { "id": "set-eventvar-value", "objectClass": "System", "sid": "copy-static-counter", "parameters": { "variable": "observedStaticCounter", "value": "staticCounter" } }
+        ]
+      }]
+    }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "The non-static local resets per run, the static local persists between runs, both are visible to child events, and neither is exposed as a runtime global after the group exits.",
+  "expectedSelections": [],
+  "expectedActions": [],
+  "expectedActions": ["increment-local-counter", "increment-static-counter", "copy-local-counter", "copy-static-counter"],
+  "expectedOutput": { "observedCounter": 1, "observedStaticCounter": 2, "runtimeStatus": "complete" }
+}

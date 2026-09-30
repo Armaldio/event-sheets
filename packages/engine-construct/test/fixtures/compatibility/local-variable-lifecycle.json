@@ -1,0 +1,28 @@
+{
+  "id": "local-variable-lifecycle",
+  "featureId": "local-variable-lifecycle",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/variables"
+    ],
+    "claim": "Non-static local variables reset to their initial value each tick."
+  },
+  "input": {
+    "sid": "compat-local-variable",
+    "events": [{ "eventType": "block", "sid": "increment-event", "conditions": [], "actions": [
+      { "id": "set-eventvar-value", "objectClass": "System", "sid": "increment-local", "parameters": { "variable": "ticks", "value": "ticks + 1" } },
+      { "id": "set-eventvar-value", "objectClass": "System", "sid": "increment-static-local", "parameters": { "variable": "staticTicks", "value": "staticTicks + 1" } }
+    ] }]
+  },
+  "schemaVariables": [
+    { "id": "ticks", "name": "ticks", "dataType": "number", "scope": "local", "initialValue": { "type": "literal", "value": 0 }, "metadata": { "construct": { "raw": { "isStatic": false } } } },
+    { "id": "static-ticks", "name": "staticTicks", "dataType": "number", "scope": "local", "initialValue": { "type": "literal", "value": 0 }, "metadata": { "construct": { "raw": { "isStatic": true } } } }
+  ],
+  "hostInstances": [],
+  "expectedBehavior": "After two ticks the non-static local variable is reset to 0 before the second run while the static local variable retains its value.",
+  "expectedSelections": [],
+  "expectedActions": ["increment-local", "increment-static-local"],
+  "expectedOutput": { "ticksAfterTwoRuns": 1, "staticTicksAfterTwoRuns": 2 }
+}

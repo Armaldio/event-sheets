@@ -1,0 +1,48 @@
+{
+  "id": "void-function-action-calls",
+  "featureId": "void-function-action-calls",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/functions"
+    ],
+    "claim": "Functions with return type None appear as actions; the caller resumes after their actions and sub-events finish."
+  },
+  "input": {
+    "sid": "compat-function-actions",
+    "events": [
+      { "eventType": "variable", "sid": "function-counter", "name": "counter", "type": "number", "initialValue": "0", "comment": "", "isStatic": false, "isConstant": false },
+      { "eventType": "variable", "sid": "after-call", "name": "afterCall", "type": "number", "initialValue": "0", "comment": "", "isStatic": false, "isConstant": false },
+      {
+        "eventType": "function",
+        "sid": "increment-function",
+        "name": "IncrementCounter",
+        "parameters": [
+          { "sid": "amount-param", "name": "amount", "type": "number" },
+          { "sid": "bonus-param", "name": "bonus", "type": "number" }
+        ],
+        "returnType": "None",
+        "conditions": [],
+        "actions": [
+          { "id": "add-to-eventvar", "objectClass": "System", "sid": "increment-counter", "parameters": { "variable": "counter", "value": "amount + bonus" } }
+        ]
+      },
+      {
+        "eventType": "block",
+        "sid": "function-action-caller",
+        "conditions": [],
+        "actions": [
+          { "id": "IncrementCounter", "objectClass": "Functions", "sid": "call-increment", "parameters": { "amount": 3, "bonus": 4 } },
+          { "callFunction": "IncrementCounter", "sid": "call-increment-call-function", "parameters": [1, 2] },
+          { "id": "set-eventvar-value", "objectClass": "System", "sid": "observe-after-call", "parameters": { "variable": "afterCall", "value": "counter" } }
+        ]
+      }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Functions.IncrementCounter and Construct's callFunction action format pass ordered arguments, run synchronously, and the next caller action observes the updated global variable.",
+  "expectedSelections": [],
+  "expectedActions": ["increment-counter", "call-increment", "increment-counter", "call-increment-call-function", "observe-after-call"],
+  "expectedOutput": { "variables": { "counter": 10, "afterCall": 10 }, "runtimeStatus": "complete" }
+}

@@ -1,0 +1,249 @@
+{
+  "source": {
+    "product": "Construct 3",
+    "constructRelease": "r495.2",
+    "project": "GenvidTechnologies/construct3-sample@v0.4.0",
+    "archive": "test/fixtures/editor-projects/construct3-sample-v0.4.0/construct3-sample-r495.2-mouse-cursor-score1.c3p",
+    "archiveSha256": "23d6009d1f6b3fa732d40c7efba103db49de05e431821fec756bcf328319cc75",
+    "previewUrl": "https://preview.construct.net/local.html",
+    "captureMethod": "Instrumented Construct ACE handlers in the preview page before startup, then clicked the real GO HTML input. The project setting is useWorker:auto; Construct resolved c3_useWorker to false for this project, so the capture required no runtime-mode override.",
+    "argumentNormalization": "Object arguments are reduced to Construct object, variable, or layout names. Timer type enum 0 is Construct's once option.",
+    "scenario": {
+      "globalVariables": {
+        "score": 1
+      },
+      "buttonBefore": {
+        "x": 325,
+        "y": 203,
+        "width": 72,
+        "height": 24,
+        "layout": "Main Layout"
+      },
+      "buttonAfter": {
+        "x": 104,
+        "y": 59,
+        "width": 72,
+        "height": 24,
+        "layout": "Second Layout"
+      }
+    },
+    "evidenceLimitations": [
+      "The ACE methods, arguments, condition results, action order, and layout transition come directly from the Construct r495.2 preview.",
+      "Construct does not export this engine's ExecutionTrace format. Sheet, event, and group rows in the projection are source-mapped from project SIDs; their statuses are inferred from the captured ACE calls.",
+      "The host-adapter test supplies the captured Mouse condition result. Object collision and cursor geometry remain host behavior."
+    ]
+  },
+  "aceCalls": [
+    {
+      "owner": "Button",
+      "section": "Cnds",
+      "name": "OnClicked",
+      "engineOperation": "NavButton.on-clicked",
+      "args": [],
+      "result": true
+    },
+    {
+      "owner": "Mouse",
+      "section": "Cnds",
+      "name": "IsOverObject",
+      "engineOperation": "Mouse.cursor-is-over-object",
+      "args": [
+        {
+          "name": "NavButton"
+        }
+      ],
+      "result": true
+    },
+    {
+      "owner": "System",
+      "section": "Cnds",
+      "name": "Compare",
+      "engineOperation": "System.compare-two-values",
+      "args": [
+        1,
+        4,
+        0
+      ],
+      "result": true
+    },
+    {
+      "owner": "System",
+      "section": "Cnds",
+      "name": "CompareVar",
+      "engineOperation": "System.compare-eventvar",
+      "args": [
+        {
+          "name": "temp",
+          "sid": 100000000000021,
+          "value": 0
+        },
+        0,
+        0
+      ],
+      "result": true
+    },
+    {
+      "owner": "System",
+      "section": "Acts",
+      "name": "AddVar",
+      "engineOperation": "System.add-to-eventvar",
+      "args": [
+        {
+          "name": "temp",
+          "sid": 100000000000021,
+          "value": 0
+        },
+        1
+      ]
+    },
+    {
+      "owner": "MyCompany_MyBehavior",
+      "section": "Acts",
+      "name": "Stop",
+      "engineOperation": "Sprite2.stop",
+      "args": []
+    },
+    {
+      "owner": "Timer",
+      "section": "Acts",
+      "name": "StartTimer",
+      "engineOperation": "TextFamily.start-timer",
+      "args": [
+        1,
+        0,
+        "test"
+      ]
+    },
+    {
+      "owner": "System",
+      "section": "Acts",
+      "name": "GoToLayout",
+      "engineOperation": "System.go-to-layout",
+      "args": [
+        {
+          "name": "Second Layout"
+        }
+      ]
+    }
+  ],
+  "runtimeTraceProjection": {
+    "documentId": "construct-project:je2an0z14z6",
+    "sheetId": "construct:635959236260852",
+    "status": "complete",
+    "entries": [
+      {
+        "sequence": 0,
+        "kind": "sheet",
+        "nodeId": "construct:635959236260852",
+        "status": "selected"
+      },
+      {
+        "sequence": 1,
+        "kind": "event",
+        "nodeId": "construct:100000000000022",
+        "status": "passed",
+        "details": {
+          "triggerParent": true
+        }
+      },
+      {
+        "sequence": 2,
+        "kind": "event",
+        "nodeId": "construct:573288374737163",
+        "status": "passed",
+        "parentNodeId": "construct:100000000000022"
+      },
+      {
+        "sequence": 3,
+        "kind": "condition",
+        "nodeId": "construct:718113556931833",
+        "status": "passed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "NavButton.on-clicked",
+          "result": true,
+          "trigger": "NavButton.on-clicked"
+        }
+      },
+      {
+        "sequence": 4,
+        "kind": "condition",
+        "nodeId": "construct:419875944860703",
+        "status": "passed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "Mouse.cursor-is-over-object",
+          "result": true
+        }
+      },
+      {
+        "sequence": 5,
+        "kind": "condition",
+        "nodeId": "construct:624180597436215",
+        "status": "passed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "System.compare-two-values",
+          "result": true
+        }
+      },
+      {
+        "sequence": 6,
+        "kind": "condition",
+        "nodeId": "construct:450713348459828",
+        "status": "passed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "System.compare-eventvar",
+          "result": true
+        }
+      },
+      {
+        "sequence": 7,
+        "kind": "action",
+        "nodeId": "construct:503974656149130",
+        "status": "executed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "System.add-to-eventvar",
+          "variable": "temp",
+          "value": 1
+        }
+      },
+      {
+        "sequence": 8,
+        "kind": "action",
+        "nodeId": "construct:444777231675422",
+        "status": "executed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "Sprite2.stop",
+          "selectedCount": 1
+        }
+      },
+      {
+        "sequence": 9,
+        "kind": "action",
+        "nodeId": "construct:781413955177885",
+        "status": "executed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "TextFamily.start-timer",
+          "selectedCount": 1
+        }
+      },
+      {
+        "sequence": 10,
+        "kind": "action",
+        "nodeId": "construct:631897527420293",
+        "status": "executed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "System.go-to-layout",
+          "selectedCount": 0
+        }
+      }
+    ],
+    "diagnostics": []
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "else-chain",
+  "featureId": "else-conditions",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/how-events-work"
+    ],
+    "claim": "Else runs if the immediately preceding event did not run."
+  },
+  "input": {
+    "sid": "compat-else-chain",
+    "events": [
+      { "eventType": "block", "sid": "false-event", "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "false-condition", "parameters": { "first-value": 1, "comparison": 0, "second-value": 2 } }], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "first-action", "parameters": { "variable": "branch", "value": "\"first\"" } }] },
+      { "eventType": "block", "sid": "else-after-false", "conditions": [{ "id": "else", "objectClass": "System", "sid": "else-condition", "parameters": {} }], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "else-action", "parameters": { "variable": "branch", "value": "\"else\"" } }] },
+      { "eventType": "block", "sid": "true-event", "conditions": [], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "true-action", "parameters": { "variable": "branch", "value": "\"normal\"" } }] },
+      { "eventType": "block", "sid": "else-after-true", "isElse": true, "conditions": [], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "blocked-else-action", "parameters": { "variable": "mustNotRun", "value": 1 } }] }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "The first Else runs after a failed event. The Else after a passing event is skipped.",
+  "expectedSelections": [],
+  "expectedActions": ["else-action", "true-action"],
+  "expectedOutput": { "eventStatuses": ["failed", "passed", "passed", "failed"], "conditionResults": [false, true], "variables": { "branch": "normal" } }
+}

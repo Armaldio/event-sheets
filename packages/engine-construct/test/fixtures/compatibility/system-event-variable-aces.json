@@ -1,0 +1,53 @@
+{
+  "id": "system-event-variable-aces",
+  "featureId": "system-event-variable-aces",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual-and-sample-project",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-actions"
+    ],
+    "claim": "System event-variable ACEs compare and modify declared variables; boolean variables support true checks, setting, and toggling."
+  },
+  "input": {
+    "sid": "system-variable-compat-sheet",
+    "events": [
+      { "eventType": "variable", "sid": "score-variable", "name": "score", "type": "number", "initialValue": "2", "comment": "", "isStatic": false, "isConstant": false },
+      { "eventType": "variable", "sid": "enabled-variable", "name": "enabled", "type": "boolean", "initialValue": "true", "comment": "", "isStatic": false, "isConstant": false },
+      {
+        "eventType": "block", "sid": "compare-score-event",
+        "conditions": [{ "id": "compare-eventvar", "objectClass": "System", "sid": "compare-score-condition", "parameters": { "variable": "score", "comparison": 4, "value": "1" } }],
+        "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "mark-score-match", "parameters": { "variable": "scoreMatched", "value": "1" } }]
+      },
+      {
+        "eventType": "block", "sid": "compare-enabled-event",
+        "conditions": [{ "id": "compare-boolean-eventvar", "objectClass": "System", "sid": "compare-enabled-condition", "parameters": { "variable": "enabled" } }],
+        "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "mark-enabled-match", "parameters": { "variable": "enabledMatched", "value": "1" } }]
+      },
+      {
+        "eventType": "block", "sid": "numeric-variable-actions", "conditions": [],
+        "actions": [
+          { "id": "add-to-eventvar", "objectClass": "System", "sid": "add-score", "parameters": { "variable": "score", "value": "3" } },
+          { "id": "subtract-from-eventvar", "objectClass": "System", "sid": "subtract-score", "parameters": { "variable": "score", "value": "1" } },
+          { "id": "reset-eventvar", "objectClass": "System", "sid": "reset-score", "parameters": { "variable": "score" } }
+        ]
+      },
+      {
+        "eventType": "block", "sid": "set-boolean-event",
+        "conditions": [],
+        "actions": [{ "id": "set-boolean-eventvar", "objectClass": "System", "sid": "disable-enabled", "parameters": { "variable": "enabled", "value": "false" } }]
+      },
+      {
+        "eventType": "block", "sid": "toggle-boolean-event",
+        "conditions": [],
+        "actions": [{ "id": "toggle-boolean-eventvar", "objectClass": "System", "sid": "toggle-enabled", "parameters": { "variable": "enabled" } }]
+      }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Comparison conditions and numeric/boolean actions execute using declared Construct variables.",
+  "expectedSelections": [],
+  "expectedActions": ["mark-score-match", "mark-enabled-match", "add-score", "subtract-score", "reset-score", "disable-enabled", "toggle-enabled"],
+  "expectedOutput": { "variables": { "score": 2, "enabled": true, "scoreMatched": 1, "enabledMatched": 1 }, "runtimeStatus": "complete" }
+}

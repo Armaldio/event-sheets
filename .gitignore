@@ -1,0 +1,13 @@
+node_modules/
+dist/
+packages/visual/lib/
+packages/visual/types/
+coverage/
+.turbo/
+.vite/
+.DS_Store
+*.tsbuildinfo
+**/*.vue.js
+.env
+.env.*
+!.env.example

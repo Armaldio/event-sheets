@@ -1,0 +1,27 @@
+{
+  "id": "loop-condition-in-or-block",
+  "featureId": "or-block-loops",
+  "status": "UNSUPPORTED",
+  "baseline": {
+    "kind": "runtime-limitation",
+    "claim": "Looping conditions in OR blocks are preserved but not executed."
+  },
+  "input": {
+    "sid": "compat-or-block-loop",
+    "events": [{
+      "eventType": "block",
+      "sid": "or-loop-event",
+      "isOrBlock": true,
+      "conditions": [
+        { "id": "repeat", "objectClass": "System", "sid": "or-repeat", "parameters": { "count": 2 } },
+        { "id": "compare-two-values", "objectClass": "System", "sid": "or-compare", "parameters": { "first-value": 1, "comparison": 0, "second-value": 1 } }
+      ],
+      "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "must-skip", "parameters": { "variable": "ran", "value": 1 } }]
+    }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "A looping condition inside an OR block is reported unsupported, and its action does not execute.",
+  "expectedSelections": [],
+  "expectedActions": [],
+  "expectedOutput": { "eventStatuses": ["unsupported"], "runtimeStatus": "partial" }
+}

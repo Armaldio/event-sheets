@@ -1,0 +1,37 @@
+{
+  "id": "ordered-for-each-loop",
+  "featureId": "ordered-for-each-loop",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions"
+    ],
+    "claim": "The ordered For Each variant uses an expression to define iteration order."
+  },
+  "input": {
+    "sid": "compat-ordered-for-each",
+    "events": [
+      { "eventType": "variable", "sid": "ordered-code-variable", "name": "orderedCode", "type": "number", "initialValue": 0, "comment": "", "isStatic": false, "isConstant": false },
+      {
+        "eventType": "block",
+        "sid": "ordered-for-each-event",
+        "conditions": [
+          { "id": "for-each-ordered", "objectClass": "System", "sid": "ordered-condition", "parameters": { "object": "Player", "order": "Player.X" } }
+        ],
+        "actions": [
+          { "id": "set-eventvar-value", "objectClass": "System", "sid": "append-ordered-x", "parameters": { "variable": "orderedCode", "value": "orderedCode * 100 + Player.X" } }
+        ]
+      }
+    ]
+  },
+  "hostInstances": [
+    { "type": "Player", "properties": { "id": "player-12", "X": 12 } },
+    { "type": "Player", "properties": { "id": "player-4", "X": 4 } },
+    { "type": "Player", "properties": { "id": "player-9", "X": 9 } }
+  ],
+  "expectedBehavior": "Players iterate in ascending X order, recorded as the numeric sequence 4, 9, 12.",
+  "expectedSelections": [],
+  "expectedActions": ["append-ordered-x", "append-ordered-x", "append-ordered-x"],
+  "expectedOutput": { "variables": { "orderedCode": 40912 }, "loopCount": 3, "runtimeStatus": "complete" }
+}

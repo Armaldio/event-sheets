@@ -1,0 +1,39 @@
+{
+  "id": "trigger-dispatch-through-parent-events",
+  "featureId": "trigger-dispatch",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/how-events-work",
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/sub-events"
+    ],
+    "claim": "Trigger events run only when fired; a trigger sub-event also requires its parent conditions to be true."
+  },
+  "input": {
+    "sid": "compat-trigger-dispatch",
+    "events": [
+      {
+        "eventType": "block",
+        "sid": "allowed-parent",
+        "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "allowed-condition", "parameters": { "first-value": "allowed", "comparison": 0, "second-value": 1 } }],
+        "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "parent-action", "parameters": { "variable": "parentAction", "value": 1 } }],
+        "children": [{ "eventType": "block", "sid": "trigger-child", "conditions": [{ "id": "on-message", "objectClass": "SignalBus", "sid": "trigger-condition", "parameters": { "tag": "ready" } }], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "ready-action", "parameters": { "variable": "ready", "value": 1 } }] }]
+      },
+      {
+        "eventType": "block",
+        "sid": "blocked-parent",
+        "conditions": [{ "id": "compare-two-values", "objectClass": "System", "sid": "blocked-condition", "parameters": { "first-value": "allowed", "comparison": 0, "second-value": 0 } }],
+        "actions": [],
+        "children": [{ "eventType": "block", "sid": "blocked-trigger-child", "conditions": [{ "id": "on-message", "objectClass": "SignalBus", "sid": "blocked-trigger-condition", "parameters": { "tag": "ready" } }], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "blocked-action", "parameters": { "variable": "mustNotRun", "value": 1 } }] }]
+      }
+    ]
+  },
+  "schemaVariables": [{ "id": "allowed", "name": "allowed", "dataType": "number", "scope": "global", "initialValue": { "type": "literal", "value": 1 } }],
+  "trigger": { "operation": "SignalBus.on-message", "parameters": ["ready"] },
+  "hostInstances": [],
+  "expectedBehavior": "The matching trigger child runs when its parent passes; the child below a failing parent does not run, and parent actions are not rerun during trigger dispatch.",
+  "expectedSelections": [],
+  "expectedActions": ["ready-action"],
+  "expectedOutput": { "eventStatuses": ["passed", "passed", "failed", "skipped"], "variables": { "allowed": 1, "ready": 1 } }
+}

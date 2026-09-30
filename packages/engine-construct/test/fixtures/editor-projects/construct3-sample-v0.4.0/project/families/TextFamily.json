@@ -1,0 +1,23 @@
+{
+	"name": "TextFamily",
+	"plugin-id": "Text",
+	"sid": 924333557996132,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 941140762763444
+		}
+	],
+	"effectTypes": [
+		{
+			"effectId": "MyCompany_MyEffect",
+			"name": "MyCustomEffect"
+		}
+	],
+	"members": [
+		"Text2",
+		"Text"
+	]
+}

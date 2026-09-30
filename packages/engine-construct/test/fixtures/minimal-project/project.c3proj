@@ -1,0 +1,18 @@
+{
+  "projectFormatVersion": 1,
+  "savedWithRelease": 26000,
+  "name": "Fixture Project",
+  "uniqueId": "fixture-project-1",
+  "eventSheets": {
+    "items": ["Main"],
+    "subfolders": [
+      {
+        "name": "Shared",
+        "items": ["Common"],
+        "subfolders": []
+      }
+    ]
+  },
+  "layouts": { "items": [], "subfolders": [] },
+  "usedAddons": []
+}

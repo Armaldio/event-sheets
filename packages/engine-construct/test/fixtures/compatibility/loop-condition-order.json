@@ -1,0 +1,24 @@
+{
+  "id": "nonfinal-loop-condition",
+  "featureId": "loop-condition-order",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions"
+    ],
+    "claim": "Construct loop conditions test the later conditions and run the event body for each passing iteration."
+  },
+  "input": {
+    "sid": "compat-loop-condition-order",
+    "events": [{ "eventType": "block", "sid": "nonfinal-loop-event", "conditions": [
+      { "id": "repeat", "objectClass": "System", "sid": "nonfinal-repeat", "parameters": { "count": 2 } },
+      { "id": "compare-two-values", "objectClass": "System", "sid": "after-repeat", "parameters": { "first-value": 1, "comparison": 0, "second-value": 1 } }
+    ], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "should-skip", "parameters": { "variable": "ran", "value": "LoopIndex" } }] }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Repeat runs the later condition for each iteration and executes the body twice.",
+  "expectedSelections": [],
+  "expectedActions": [],
+  "expectedOutput": { "eventStatus": "passed", "runtimeStatus": "complete", "loopCount": 2, "variables": { "ran": 1 } }
+}

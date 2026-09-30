@@ -1,0 +1,30 @@
+{
+  "id": "logical-or-block",
+  "featureId": "or-blocks",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/how-events-work"
+    ],
+    "claim": "An OR block runs when any one condition is true."
+  },
+  "input": {
+    "sid": "compat-or-block",
+    "events": [{
+      "eventType": "block",
+      "sid": "or-event",
+      "isOrBlock": true,
+      "conditions": [
+        { "id": "compare-two-values", "objectClass": "System", "sid": "or-true", "parameters": { "first-value": 1, "comparison": 0, "second-value": 1 } },
+        { "id": "compare-two-values", "objectClass": "System", "sid": "or-false", "parameters": { "first-value": 1, "comparison": 0, "second-value": 2 } }
+      ],
+      "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "or-action", "parameters": { "variable": "passed", "value": 1 } }]
+    }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "The event passes because one of the two conditions passes.",
+  "expectedSelections": [],
+  "expectedActions": ["or-action"],
+  "expectedOutput": { "eventStatuses": ["passed"], "conditionResults": [true, false], "variables": { "passed": 1 } }
+}

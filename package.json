@@ -1,0 +1,24 @@
+{
+  "name": "event-sheets",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@11.21.0",
+  "scripts": {
+    "dev": "turbo run dev --filter=@project/playground",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vue/tsconfig": "^0.9.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-vue": "^10.6.1",
+    "globals": "^16.5.0",
+    "turbo": "^2.5.8",
+    "typescript-eslint": "^8.48.0"
+  }
+}

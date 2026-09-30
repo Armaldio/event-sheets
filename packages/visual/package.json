@@ -1,0 +1,37 @@
+{
+  "name": "@project/visual",
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "files": ["types", "lib", "README.md"],
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./style.css": "./lib/index.css"
+  },
+  "scripts": {
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly -p tsconfig.json",
+    "typecheck": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.json",
+    "lint": "eslint src test vite.config.ts vitest.config.ts",
+    "test": "pnpm build && vitest run"
+  },
+  "dependencies": {
+    "@project/schema": "workspace:*"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^27.3.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^4.1.1",
+    "vue": "^3.5.42",
+    "vue-tsc": "^3.3.11"
+  }
+}

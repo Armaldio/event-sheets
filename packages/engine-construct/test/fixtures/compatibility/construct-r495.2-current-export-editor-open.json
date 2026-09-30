@@ -1,0 +1,165 @@
+{
+  "capturedOn": "2026-09-29",
+  "source": {
+    "repository": "fodi/construct-3-projects",
+    "commit": "4cd387425b1a6c20bf7607190be7b237a4a52f4a",
+    "form": ".c3p"
+  },
+  "tool": {
+    "engine": "@project/engine-construct current workspace build",
+    "editor": "Construct 3 r495.2",
+    "browser": "isolated headless Chromium",
+    "openMethod": "showOpenFilePicker test stub supplied the current exported archive as a File object"
+  },
+  "scope": {
+    "projects": 15,
+    "sourceImportsComplete": 15,
+    "outputReimportsComplete": 15,
+    "editorOpened": 14,
+    "editorBlocked": 1,
+    "projectsPreviewed": 0,
+    "projectScriptsExecuted": 0,
+    "pageErrors": 0,
+    "outputReimportDiagnostics": {
+      "construct.unsupported-script-action": 10
+    }
+  },
+  "results": [
+    {
+      "archive": "BlankTemplate.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "c2765bcfaa175dae3f248c76f2f8418202c4fb48bb40105af708315b06d8cb2d",
+      "editorOpen": "opened",
+      "editorProjectTitle": "FodiTemplate - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "ConstructColorConverter.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "0815eb380f28a23706f5a2dea70648f878b8c6ad6baac6450c42d110d006a653",
+      "editorOpen": "opened",
+      "editorProjectTitle": "ConstructColorConverter - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "EightDirectionPlayer+SmoothCamera.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "48801eed92242490ad2b0ff40328b8ab8e53d17e1c72bcd42d9e5ced6feb95cb",
+      "editorOpen": "opened",
+      "editorProjectTitle": "Eight direction player + smooth camera - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "FirstPersonShooter1.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "01e2abb1761b3af36bc421296328c2f711518a7b1a9b0ba1e28a5813cb733615",
+      "editorOpen": "opened",
+      "editorProjectTitle": "FirstPersonShooter1 - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "FirstPersonShooter2.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "98c61531acc682e5672ad811dbc50e94b4ae7614d6f22a914186f545a60984c0",
+      "editorOpen": "blocked",
+      "editorProjectTitle": "Game Making Software - Construct 3",
+      "pageErrors": [],
+      "blocker": "Missing legacy add-on: Behavior Rapier 3D Physics (mikal_cannon_3d_physics), SDK v1; Construct r495.2 cannot install legacy addons."
+    },
+    {
+      "archive": "Flying3DCamera.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "5381f249ba2266106f034f59a061efde2e75c24d83185bb5ecda097a8bf50157",
+      "editorOpen": "opened",
+      "editorProjectTitle": "Flying3DCamera - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "FunWithColors.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "213dd61715fd4f0b49ee51fa0283e5c2a8b00d79024d83e3d2484b96318acdda",
+      "editorOpen": "opened",
+      "editorProjectTitle": "FunWithColors - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "NoiseToTilemap.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "0ddbdb9fd3b5670eb5f2b4dc98cd310b199fd0e23461aa6e0a2510b424d74649",
+      "editorOpen": "opened",
+      "editorProjectTitle": "NoiseToTilemap - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "PixelmatchWrapper.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "332092a4e555653d3c658cfd945c89cd15b17a8389a91107eabd104e0b9349a4",
+      "editorOpen": "opened",
+      "editorProjectTitle": "PixelmatchWrapper - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "PlatformerTemplate.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "c79208d1524a1888e773101425d2020da4d0a34c7d809eb9c05657cbbbfab0eb",
+      "editorOpen": "opened",
+      "editorProjectTitle": "PlatformerTemplate - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "SmoothTerrainTemplate.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "018c74b17537df80aab391b0d458b9078b63baccd596dd902a61c46b452123d3",
+      "editorOpen": "opened",
+      "editorProjectTitle": "SmoothTerrainTemplate - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "SurvivorslikeTemplate.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "f9c89035b3d3cbe16e22e22c613fce091212273ecea5fd1f5d6b8eb212c1ae8a",
+      "editorOpen": "opened",
+      "editorProjectTitle": "SurvivorslikeTemplate - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "TwitchChatSimple.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "d98d149ff0b4813c247525e66cd7f57fb17c4097ea6b155a448225003db1726f",
+      "editorOpen": "opened",
+      "editorProjectTitle": "TwitchChatSimple - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "WaveFunctionCollapse.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "4b97ac3ec5436cb4bc9e703cbb810d78201e4cba9e4f58b18e112ee99ad8fb44",
+      "editorOpen": "opened",
+      "editorProjectTitle": "WaveFunctionCollapse - Construct 3",
+      "pageErrors": []
+    },
+    {
+      "archive": "WebSocketExample.c3p",
+      "sourceImportStatus": "complete",
+      "outputReimportStatus": "complete",
+      "outputSha256": "ab439c1ea304713e492faebdbdb680867f4003c3c19f32f7bdb5ba054a92bb7b",
+      "editorOpen": "opened",
+      "editorProjectTitle": "WebSocketExample - Construct 3",
+      "pageErrors": []
+    }
+  ]
+}

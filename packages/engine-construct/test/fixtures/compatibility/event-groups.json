@@ -1,0 +1,152 @@
+{
+  "id": "event-groups",
+  "featureId": "event-groups",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/groups"
+    ],
+    "claim": "Groups inactive on start do not run until activated with Set group active."
+  },
+  "input": {
+    "sid": "event-groups-sheet",
+    "name": "Event groups",
+    "events": [
+      {
+        "eventType": "block",
+        "sid": "check-inactive-group-event",
+        "conditions": [{
+          "id": "is-group-active",
+          "objectClass": "System",
+          "sid": "check-group-before-activation",
+          "parameters": { "group-name": "\"Activation target\"" }
+        }],
+        "actions": [{
+          "id": "set-eventvar-value",
+          "objectClass": "System",
+          "sid": "must-not-run-before-activation",
+          "parameters": { "variable": "beforeActivationRan", "value": 1 }
+        }]
+      },
+      {
+        "eventType": "block",
+        "sid": "activate-group-event",
+        "conditions": [],
+        "actions": [{
+          "id": "set-group-active",
+          "objectClass": "System",
+          "sid": "activate-group",
+          "parameters": { "group-name": "\"Activation target\"", "state": "activated" }
+        }]
+      },
+      {
+        "eventType": "group",
+        "sid": "enabled-group",
+        "disabled": false,
+        "title": "Enabled group",
+        "description": "",
+        "isActiveOnStart": true,
+        "children": [
+          {
+            "eventType": "block",
+            "sid": "enabled-group-event",
+            "conditions": [],
+            "actions": [
+              {
+                "id": "set-eventvar-value",
+                "objectClass": "System",
+                "sid": "run-in-enabled-group",
+                "parameters": {
+                  "variable": "groupRan",
+                  "value": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "eventType": "group",
+        "sid": "disabled-group",
+        "disabled": true,
+        "title": "Disabled group",
+        "description": "",
+        "isActiveOnStart": true,
+        "children": [
+          {
+            "eventType": "block",
+            "sid": "disabled-group-event",
+            "conditions": [],
+            "actions": [
+              {
+                "id": "set-eventvar-value",
+                "objectClass": "System",
+                "sid": "must-not-run-in-disabled-group",
+                "parameters": {
+                  "variable": "disabledGroupRan",
+                  "value": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "eventType": "group",
+        "sid": "inactive-on-start-group",
+        "disabled": false,
+        "title": "Inactive on start group",
+        "description": "",
+        "isActiveOnStart": false,
+        "children": [
+          {
+            "eventType": "block",
+            "sid": "inactive-group-event",
+            "conditions": [],
+            "actions": [
+              {
+                "id": "set-eventvar-value",
+                "objectClass": "System",
+                "sid": "must-not-run-in-inactive-group",
+                "parameters": {
+                  "variable": "inactiveGroupRan",
+                  "value": "1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "eventType": "group",
+        "sid": "activated-group",
+        "disabled": false,
+        "title": "Activation target",
+        "description": "",
+        "isActiveOnStart": false,
+        "children": [{
+          "eventType": "block",
+          "sid": "activated-group-event",
+          "conditions": [{
+            "id": "is-group-active",
+            "objectClass": "System",
+            "sid": "check-group-after-activation",
+            "parameters": { "group-name": "\"Activation target\"" }
+          }],
+          "actions": [{
+            "id": "set-eventvar-value",
+            "objectClass": "System",
+            "sid": "run-after-activation",
+            "parameters": { "variable": "activatedGroupRan", "value": "1" }
+          }]
+        }]
+      }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "The enabled group runs, disabled and inactive-on-start groups skip, Is group active sees the activation target as inactive before activation and active afterward, and Set group active activates it during event execution.",
+  "expectedSelections": [],
+  "expectedActions": ["activate-group", "run-in-enabled-group", "run-after-activation"],
+  "expectedOutput": { "variables": { "groupRan": 1, "activatedGroupRan": 1 } }
+}

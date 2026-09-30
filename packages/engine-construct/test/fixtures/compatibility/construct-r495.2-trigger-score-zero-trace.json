@@ -1,0 +1,142 @@
+{
+  "source": {
+    "product": "Construct 3",
+    "constructRelease": "r495.2",
+    "project": "GenvidTechnologies/construct3-sample@v0.4.0",
+    "archive": "test/fixtures/editor-projects/construct3-sample-v0.4.0/construct3-sample-r495.2-trigger-score0.c3p",
+    "archiveSha256": "6cebc2d63a6bb11929bb39188698a6e6b75e1fee672150329179fedf31b9d3ec",
+    "previewUrl": "https://preview.construct.net/local.html",
+    "captureMethod": "Wrapped Construct ACE handlers in the preview page, armed the recorder, and clicked the real GO HTML input.",
+    "scenario": {
+      "globalVariables": {
+        "score": 0
+      },
+      "buttonBefore": {
+        "x": 325,
+        "y": 203,
+        "width": 72,
+        "height": 24,
+        "layout": "Main Layout"
+      },
+      "buttonAfter": {
+        "x": 325,
+        "y": 203,
+        "width": 72,
+        "height": 24,
+        "layout": "Main Layout"
+      }
+    },
+    "ambientCalls": {
+      "method": "System.Cnds.IsGroupActive",
+      "count": 98,
+      "result": true,
+      "note": "Per-tick event-group activity polls during the 1.5-second observation window; summarized separately from the GO-triggered event calls."
+    },
+    "evidenceLimitations": [
+      "The GO-triggered ACE calls, arguments, return values, and unchanged button position come from the Construct r495.2 preview run.",
+      "Construct did not export this engine's ExecutionTrace format. Sheet, event, group, and skipped-node rows are a source-mapped projection; parent and skipped statuses are derived from source structure and the observed short-circuit.",
+      "The preview-picker shim supplied the local archive to Construct's File System Access API. It did not change the project runtime or ACE handlers."
+    ]
+  },
+  "aceCalls": [
+    {
+      "owner": "Button",
+      "section": "Cnds",
+      "name": "OnClicked",
+      "engineOperation": "NavButton.on-clicked",
+      "args": [],
+      "result": true
+    },
+    {
+      "owner": "System",
+      "section": "Cnds",
+      "name": "Compare",
+      "engineOperation": "System.compare-two-values",
+      "args": [0, 4, 0],
+      "result": false
+    }
+  ],
+  "runtimeTraceProjection": {
+    "documentId": "construct-project:je2an0z14z6",
+    "sheetId": "construct:635959236260852",
+    "status": "complete",
+    "entries": [
+      {
+        "sequence": 0,
+        "kind": "sheet",
+        "nodeId": "construct:635959236260852",
+        "status": "selected"
+      },
+      {
+        "sequence": 1,
+        "kind": "event",
+        "nodeId": "construct:100000000000022",
+        "status": "passed",
+        "details": { "triggerParent": true }
+      },
+      {
+        "sequence": 2,
+        "kind": "event",
+        "nodeId": "construct:573288374737163",
+        "status": "failed",
+        "parentNodeId": "construct:100000000000022"
+      },
+      {
+        "sequence": 3,
+        "kind": "condition",
+        "nodeId": "construct:718113556931833",
+        "status": "passed",
+        "parentNodeId": "construct:573288374737163",
+        "details": {
+          "operation": "NavButton.on-clicked",
+          "result": true,
+          "trigger": "NavButton.on-clicked"
+        }
+      },
+      {
+        "sequence": 4,
+        "kind": "condition",
+        "nodeId": "construct:624180597436215",
+        "status": "failed",
+        "parentNodeId": "construct:573288374737163",
+        "details": { "operation": "System.compare-two-values", "result": false }
+      },
+      {
+        "sequence": 5,
+        "kind": "condition",
+        "nodeId": "construct:450713348459828",
+        "status": "skipped",
+        "parentNodeId": "construct:573288374737163"
+      },
+      {
+        "sequence": 6,
+        "kind": "action",
+        "nodeId": "construct:503974656149130",
+        "status": "skipped",
+        "parentNodeId": "construct:573288374737163"
+      },
+      {
+        "sequence": 7,
+        "kind": "action",
+        "nodeId": "construct:444777231675422",
+        "status": "skipped",
+        "parentNodeId": "construct:573288374737163"
+      },
+      {
+        "sequence": 8,
+        "kind": "action",
+        "nodeId": "construct:781413955177885",
+        "status": "skipped",
+        "parentNodeId": "construct:573288374737163"
+      },
+      {
+        "sequence": 9,
+        "kind": "action",
+        "nodeId": "construct:631897527420293",
+        "status": "skipped",
+        "parentNodeId": "construct:573288374737163"
+      }
+    ],
+    "diagnostics": []
+  }
+}

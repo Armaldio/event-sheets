@@ -1,0 +1,39 @@
+{
+  "id": "repeat-while-loop",
+  "featureId": "repeat-while-loops",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions"
+    ],
+    "claim": "While repeats its following conditions and event body until one of the conditions fails."
+  },
+  "input": {
+    "sid": "compat-while-loop",
+    "events": [
+      { "eventType": "variable", "sid": "index-variable", "name": "index", "type": "number", "initialValue": "0", "comment": "", "isStatic": false, "isConstant": false },
+      {
+        "eventType": "block",
+        "sid": "while-event",
+        "conditions": [
+          { "id": "repeat-while", "objectClass": "System", "sid": "while-condition", "parameters": {} },
+          { "id": "compare-eventvar", "objectClass": "System", "sid": "while-limit", "parameters": { "variable": "index", "comparison": 2, "value": 3 } }
+        ],
+        "actions": [
+          { "id": "add-to-eventvar", "objectClass": "System", "sid": "increment-index", "parameters": { "variable": "index", "value": 1 } },
+          { "id": "set-eventvar-value", "objectClass": "System", "sid": "remember-loop-index", "parameters": { "variable": "lastLoopIndex", "value": "LoopIndex" } }
+        ]
+      }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "While reevaluates the trailing counter condition each pass and executes the body at LoopIndex 0, 1, and 2.",
+  "expectedSelections": [],
+  "expectedActions": [
+    "increment-index", "remember-loop-index",
+    "increment-index", "remember-loop-index",
+    "increment-index", "remember-loop-index"
+  ],
+  "expectedOutput": { "variables": { "index": 3, "lastLoopIndex": 2 }, "loopCount": 3, "runtimeStatus": "complete" }
+}

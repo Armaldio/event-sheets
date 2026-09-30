@@ -1,0 +1,21 @@
+{
+  "id": "inverted-condition-runtime",
+  "featureId": "inverted-pick-all",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions"
+    ],
+      "claim": "The manual defines Pick all as selecting every instance. Its inverted empty-complement behavior is the engine's inferred inversion rule; the checked-in live Construct capture does not cover this behavior."
+  },
+  "input": {
+    "sid": "compat-inverted-condition",
+    "events": [{ "eventType": "block", "sid": "inverted-event", "conditions": [{ "id": "pick-all", "objectClass": "System", "sid": "inverted-condition", "isInverted": true, "parameters": { "object": "Player" } }], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "must-run", "parameters": { "variable": "mustRun", "value": 1 } }] }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "With no Player instances, inverted Pick all selects the empty complement, passes, and runs the dependent system action.",
+  "expectedSelections": [],
+  "expectedActions": ["must-run"],
+  "expectedOutput": { "eventStatus": "passed", "conditionStatus": "passed", "runtimeStatus": "complete" }
+}

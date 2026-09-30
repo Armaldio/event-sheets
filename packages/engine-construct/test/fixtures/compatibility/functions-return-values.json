@@ -1,0 +1,118 @@
+{
+  "id": "function-call-return-value",
+  "featureId": "event-functions-and-return-values",
+  "coveredFeatureIds": ["function-block-import-export"],
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/functions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/function"
+    ],
+    "claim": "Construct functions run synchronously with scoped parameters, and an expression call returns the value set by the function body."
+  },
+  "input": {
+    "sid": "compat-functions",
+    "name": "Function compatibility",
+    "events": [
+      {
+        "eventType": "function",
+        "sid": "double-function",
+        "name": "Double",
+        "parameters": [{ "sid": "double-value-parameter", "name": "value", "type": "number", "description": "Input value" }],
+        "returnType": "number",
+        "copyPicked": false,
+        "conditions": [],
+        "actions": [{
+          "id": "set-return-value",
+          "objectClass": "Functions",
+          "sid": "double-return-action",
+          "parameters": { "value": "value * 2" }
+        }],
+        "children": [
+          { "eventType": "block", "sid": "double-child-first", "conditions": [], "actions": [] },
+          { "eventType": "block", "sid": "double-child-second", "conditions": [], "actions": [] }
+        ]
+      },
+      {
+        "eventType": "function",
+        "sid": "legacy-double-function",
+        "name": "LegacyDouble",
+        "parameters": [{ "sid": "legacy-value-parameter", "name": "value", "type": "number" }],
+        "returnType": "number",
+        "conditions": [],
+        "actions": [{
+          "id": "set-return-value",
+          "objectClass": "Functions",
+          "sid": "legacy-double-return-action",
+          "parameters": { "value": "Function.Param(0) * Function.ParamCount * 2" }
+        }]
+      },
+      {
+        "eventType": "function",
+        "sid": "no-return-function",
+        "name": "NoReturn",
+        "parameters": [],
+        "returnType": "number",
+        "conditions": [],
+        "actions": []
+      },
+      {
+        "eventType": "function",
+        "sid": "greeting-function",
+        "name": "Greeting",
+        "parameters": [{ "sid": "greeting-name-parameter", "name": "name", "type": "string" }],
+        "returnType": "string",
+        "conditions": [],
+        "actions": [{
+          "id": "set-return-value",
+          "objectClass": "Functions",
+          "sid": "greeting-return-action",
+          "parameters": { "value": "\"Hello, \" & name" }
+        }]
+      },
+      {
+        "eventType": "block",
+        "sid": "call-function-event",
+        "conditions": [],
+        "actions": [
+          {
+            "id": "set-eventvar-value",
+            "objectClass": "System",
+            "sid": "read-function-result",
+            "parameters": { "variable": "result", "value": "Functions.Double(2)" }
+          },
+          {
+            "id": "set-eventvar-value",
+            "objectClass": "System",
+            "sid": "read-legacy-function-result",
+            "parameters": { "variable": "legacyResult", "value": "Function.Call(\"LegacyDouble\", 3)" }
+          },
+          {
+            "id": "set-eventvar-value",
+            "objectClass": "System",
+            "sid": "read-last-function-result",
+            "parameters": { "variable": "lastResult", "value": "Function.ReturnValue" }
+          },
+          {
+            "id": "set-eventvar-value",
+            "objectClass": "System",
+            "sid": "read-default-function-result",
+            "parameters": { "variable": "defaultResult", "value": "Functions.NoReturn()" }
+          },
+          {
+            "id": "set-eventvar-value",
+            "objectClass": "System",
+            "sid": "read-string-function-result",
+            "parameters": { "variable": "greeting", "value": "Functions.Greeting(\"Ada\")" }
+          }
+        ]
+      }
+    ]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Function blocks stay dormant during ordinary sheet execution; modern Functions.Name and legacy Function.Call expressions pass arguments, execute the function body, and return its value to the caller.",
+  "expectedSelections": [],
+  "expectedActions": [],
+  "expectedOutput": { "actionStatus": "executed", "runtimeStatus": "complete", "result": 4, "legacyResult": 6, "lastResult": 6, "defaultResult": 0, "greeting": "Hello, Ada" }
+}

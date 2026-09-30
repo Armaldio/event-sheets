@@ -1,0 +1,40 @@
+{
+  "id": "nested-repeat-and-for-each",
+  "featureId": "multiple-loop-conditions",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions",
+      "https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/how-events-work"
+    ],
+    "claim": "Conditions following a loop are evaluated during each iteration; multiple looping conditions in an event form nested iteration levels."
+  },
+  "input": {
+    "sid": "compat-multiple-loops",
+    "events": [{
+      "eventType": "block",
+      "sid": "multiple-loop-event",
+      "conditions": [
+        { "id": "repeat", "objectClass": "System", "sid": "outer-repeat", "parameters": { "count": 2 } },
+        { "id": "for-each", "objectClass": "System", "sid": "inner-for-each", "parameters": { "object": "Player" } },
+        { "id": "compare-two-values", "objectClass": "System", "sid": "trailing-filter", "parameters": { "first-value": "Player.X", "comparison": 0, "second-value": 2 } }
+      ],
+      "actions": [
+        { "id": "record", "objectClass": "Player", "sid": "record-player", "parameters": { "action": "record-player" } },
+        { "id": "set-eventvar-value", "objectClass": "System", "sid": "remember-inner-index", "parameters": { "variable": "lastIndex", "value": "LoopIndex" } }
+      ]
+    }]
+  },
+  "hostInstances": [
+    { "type": "Player", "properties": { "id": "player-1", "X": 1 } },
+    { "type": "Player", "properties": { "id": "player-2", "X": 2 } }
+  ],
+  "expectedBehavior": "Repeat runs twice; each pass runs For Each over both players, and the trailing condition lets only player-2 reach the body. LoopIndex in the body is the inner For Each index.",
+  "expectedSelections": [
+    { "action": "record-player", "instanceIds": ["player-2"] },
+    { "action": "record-player", "instanceIds": ["player-2"] }
+  ],
+  "expectedActions": ["record-player", "remember-inner-index", "record-player", "remember-inner-index"],
+  "expectedOutput": { "eventStatuses": ["passed"], "loopCount": 2, "variables": { "lastIndex": 1 }, "runtimeStatus": "complete" }
+}

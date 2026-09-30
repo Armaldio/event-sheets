@@ -1,0 +1,28 @@
+{
+  "id": "nested-loop-iteration-limit",
+  "featureId": "multiple-loop-conditions",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "runtime-limitation",
+    "claim": "Nested iteration stops after 10000 total loop frames to bound runtime work."
+  },
+  "input": {
+    "sid": "compat-multiple-loops-limit",
+    "events": [{
+      "eventType": "block",
+      "sid": "multiple-loop-limit-event",
+      "conditions": [
+        { "id": "repeat", "objectClass": "System", "sid": "outer-repeat", "parameters": { "count": 100 } },
+        { "id": "repeat", "objectClass": "System", "sid": "inner-repeat", "parameters": { "count": 100 } }
+      ],
+      "actions": [
+        { "id": "set-eventvar-value", "objectClass": "System", "sid": "remember-inner-index", "parameters": { "variable": "lastIndex", "value": "LoopIndex" } }
+      ]
+    }]
+  },
+  "hostInstances": [],
+  "expectedBehavior": "Nested loops stop with a partial result when their combined loop-frame count exceeds 10000.",
+  "expectedSelections": [],
+  "expectedActions": [],
+  "expectedOutput": { "eventStatus": "unsupported", "loopCount": 9900, "lastIndex": 99, "runtimeStatus": "partial" }
+}

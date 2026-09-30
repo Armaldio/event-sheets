@@ -1,0 +1,28 @@
+{
+  "id": "trigger-once-while-true",
+  "featureId": "trigger-once-while-true",
+  "status": "TESTED",
+  "baseline": {
+    "kind": "construct-manual",
+    "sources": [
+      "https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions"
+    ],
+    "claim": "Trigger once while true runs on the first tick its preceding conditions become true and should be the final condition."
+  },
+  "input": {
+    "sid": "compat-trigger-once",
+    "events": [{ "eventType": "block", "sid": "once-event", "conditions": [
+      { "id": "compare-two-values", "objectClass": "System", "sid": "state-condition", "parameters": { "first-value": "state", "comparison": 0, "second-value": 1 } },
+      { "id": "trigger-once-while-true", "objectClass": "System", "sid": "once-condition", "parameters": {} }
+    ], "actions": [{ "id": "set-eventvar-value", "objectClass": "System", "sid": "increment-count", "parameters": { "variable": "count", "value": "count + 1" } }] }]
+  },
+  "schemaVariables": [
+    { "id": "state", "name": "state", "dataType": "number", "scope": "global", "initialValue": { "type": "literal", "value": 1 } },
+    { "id": "count", "name": "count", "dataType": "number", "scope": "global", "initialValue": { "type": "literal", "value": 0 } }
+  ],
+  "hostInstances": [],
+  "expectedBehavior": "Repeated true ticks run the event once; a false tick rearms the condition for the next true tick.",
+  "expectedSelections": [],
+  "expectedActions": ["increment-count", "increment-count"],
+  "expectedOutput": { "countAfterTwoTrueTicks": 1, "countAfterFalseThenTrue": 2 }
+}
